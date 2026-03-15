@@ -10,50 +10,27 @@ var typed = new Typed(".text", {
 
 // Contact form submission
 document.getElementById("contact-form")
-.addEventListener("submit", async function(e){
+.addEventListener("submit", function(e){
 
-    e.preventDefault();
+e.preventDefault();
 
-    const form = this;
+emailjs.sendForm(
+"service_wgzqvsf",     // your service id
+"template_e3ku3ch",      // your template id
+this
+).then(function(){
 
-    const formData = {
-        name: form.name.value,
-        email: form.email.value,
-        subject: form.subject.value,
-        message: form.message.value
-    };
+alert("Message sent successfully!");
 
-    try{
+document.getElementById("contact-form").reset();
 
-        const response = await fetch("http://localhost:5000/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        });
+}, function(error){
 
-        const result = await response.json();
-
-        if(result.success){
-
-            alert("Message sent successfully!");
-
-            // Clear form
-            form.reset();
-
-            // Optional page reload
-            // location.reload();
-
-        }else{
-            alert("Failed to send message");
-        }
-
-    }catch(error){
-
-        console.error(error);
-        alert("Server error. Please try again.");
-
-    }
+alert("Failed to send message");
 
 });
+
+});
+
+// "service_wgzqvsf",
+// "template_e3ku3ch",
