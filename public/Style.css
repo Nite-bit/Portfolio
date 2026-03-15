@@ -54,7 +54,7 @@ body{
     width: 100%;
     justify-content: space-between;
     height: 100vh;
-    background:url(../images/Hero.jpg) no-repeat;
+    background:url(images/Hero.jpg) no-repeat;
     /* background:  #008080; */
     background-size: cover;
 
